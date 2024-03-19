@@ -28,7 +28,7 @@ const Index = () => {
   };
 
   return (
-    <Grid templateRows="1fr 1fr 3fr" height="100vh">
+    <Grid templateRows="1fr 1fr 6fr" height="100vh">
       <GridItem>
         <Heading as="h1" size="xl" textAlign="center" mb={8}>
           Todo App
@@ -45,16 +45,20 @@ const Index = () => {
           ))}
         </VStack>
       </GridItem>
-      <GridItem>
-        <form onSubmit={handleSubmit}>
-          <HStack>
-            <Input placeholder="Enter a todo" value={todo} onChange={(e) => setTodo(e.target.value)} />
-            <Button type="submit" colorScheme="blue" px={8}>
-              Add
-            </Button>
-          </HStack>
-        </form>
-      </GridItem>
+      <Grid templateColumns="1fr 1fr 1fr">
+        <GridItem></GridItem>
+        <GridItem>
+          <form onSubmit={handleSubmit}>
+            <HStack>
+              <Input placeholder="Enter a todo" value={todo} onChange={(e) => setTodo(e.target.value)} />
+              <Button type="submit" colorScheme="blue" px={8}>
+                Add
+              </Button>
+            </HStack>
+          </form>
+        </GridItem>
+        <GridItem></GridItem>
+      </Grid>
     </Grid>
   );
 };
