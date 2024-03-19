@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Box, Heading, Input, Button, Text, VStack, HStack, IconButton, Spacer, useToast } from "@chakra-ui/react";
-import { FaPlus, FaTrash } from "react-icons/fa";
+import { Grid, GridItem, Heading, Input, Button, Text, VStack, HStack, IconButton, Spacer, useToast } from "@chakra-ui/react";
+import { FaTrash } from "react-icons/fa";
 
 const Index = () => {
   const [todo, setTodo] = useState("");
@@ -28,28 +28,34 @@ const Index = () => {
   };
 
   return (
-    <Box maxWidth="600px" margin="auto" mt={8} p={4}>
-      <Heading as="h1" size="xl" textAlign="center" mb={8}>
-        Todo App
-      </Heading>
-      <form onSubmit={handleSubmit}>
-        <HStack>
-          <Input placeholder="Enter a todo" value={todo} onChange={(e) => setTodo(e.target.value)} />
-          <Button type="submit" colorScheme="blue" px={8}>
-            <FaPlus />
-          </Button>
-        </HStack>
-      </form>
-      <VStack mt={8} spacing={4} align="stretch">
-        {todos.map((todo, index) => (
-          <HStack key={index}>
-            <Text>{todo}</Text>
-            <Spacer />
-            <IconButton icon={<FaTrash />} onClick={() => deleteTodo(index)} colorScheme="red" />
+    <Grid templateRows="1fr 1fr 3fr" height="100vh">
+      <GridItem>
+        <Heading as="h1" size="xl" textAlign="center" mb={8}>
+          Todo App
+        </Heading>
+      </GridItem>
+      <GridItem>
+        <VStack mt={8} spacing={4} align="stretch">
+          {todos.map((todo, index) => (
+            <HStack key={index}>
+              <Text>{todo}</Text>
+              <Spacer />
+              <IconButton icon={<FaTrash />} onClick={() => deleteTodo(index)} colorScheme="red" />
+            </HStack>
+          ))}
+        </VStack>
+      </GridItem>
+      <GridItem>
+        <form onSubmit={handleSubmit}>
+          <HStack>
+            <Input placeholder="Enter a todo" value={todo} onChange={(e) => setTodo(e.target.value)} />
+            <Button type="submit" colorScheme="blue" px={8}>
+              Add
+            </Button>
           </HStack>
-        ))}
-      </VStack>
-    </Box>
+        </form>
+      </GridItem>
+    </Grid>
   );
 };
 
